@@ -60,7 +60,7 @@ public class Controlador extends Application {
             public void onResponse(Call<List<Carroceria>> call, Response<List<Carroceria>> response) {
                 if (response.isSuccessful()) {
                     for (Carroceria carroceria : response.body()) {
-                        opcionesCarrocerias.add(carroceria.getNombreSerie());
+                        opcionesCarrocerias.add(carroceria.getNombreCarroceria());
                     }
                 }
 

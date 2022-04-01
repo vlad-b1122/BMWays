@@ -2,12 +2,12 @@ package com.example.bmways.modelos;
 
 public class Carroceria {
     private int idCarroceria;
-    private String nombreSerie;
+    private String nombreCarroceria;
     private Serie serie;
 
     public Carroceria(int idCarroceria, String nombreSerie, Serie serie) {
         this.idCarroceria = idCarroceria;
-        this.nombreSerie = nombreSerie;
+        this.nombreCarroceria = nombreSerie;
         this.serie = serie;
     }
 
@@ -16,7 +16,7 @@ public class Carroceria {
     }
 
     public String getNombreSerie() {
-        return nombreSerie;
+        return nombreCarroceria;
     }
 
     public Serie getSerie() {
@@ -28,10 +28,14 @@ public class Carroceria {
     }
 
     public void setNombreSerie(String nombreSerie) {
-        this.nombreSerie = nombreSerie;
+        this.nombreCarroceria = nombreSerie;
     }
 
     public void setSerie(Serie serie) {
         this.serie = serie;
+    }
+
+    public String getNombreCarroceria() {
+        return nombreCarroceria;
     }
 }

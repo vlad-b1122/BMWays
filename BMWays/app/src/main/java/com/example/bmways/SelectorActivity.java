@@ -40,7 +40,7 @@ public class SelectorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_selector);
         this.controlador = (Controlador) getApplicationContext();
         this.inicializarDesplegableSerie();
-        //this.inicializarDesplegableCarroceria();
+        this.inicializarDesplegableCarroceria();
         this.inicializarDesplegableCombustible();
         this.inicializarDesplegableMotor();
 
