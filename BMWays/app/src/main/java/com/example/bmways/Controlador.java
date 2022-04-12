@@ -19,7 +19,11 @@ import retrofit2.Response;
 
 public class Controlador extends Application {
     public ArrayList<String> opcionesSerie;
+    public ArrayList<Serie> series;
+
     public ArrayList<String> opcionesCarrocerias;
+    public ArrayList<Carroceria> carrocerias;
+
     private ApiInterface apiInterface;
 
     @Override
@@ -29,20 +33,25 @@ public class Controlador extends Application {
     }
 
     interface controladorDelegate{
-        void seriesObtenidas(List<String> series);
+        //void seriesObtenidas(List<String> series);
+        void objetosSerieObtenidos(List<Serie> series);
         void carroceriasObtenidas(List<String> series);
     }
     public void obtenerSeries(final controladorDelegate delegate){
-        opcionesSerie = new  ArrayList<String>();
+        //opcionesSerie = new  ArrayList<String>();
+        series = new  ArrayList<Serie>();
         Call<List<Serie>> call = this.apiInterface.getSeries();
         call.enqueue(new Callback<List<Serie>>() {
             @Override
             public void onResponse(Call<List<Serie>> call, Response<List<Serie>> response) {
                 if (response.isSuccessful()) {
                     for (Serie serie : response.body()) {
-                        opcionesSerie.add(serie.getNombreSerie());
+                        //opcionesSerie.add(serie.getNombreSerie());
+                        System.out.println("TEST ----------------------------------------------> Valor serie  " + serie.getIdSerie());
+                        series.add(serie);
                     }
-                    delegate.seriesObtenidas(opcionesSerie);
+                    delegate.objetosSerieObtenidos(series);
+                    //delegate.seriesObtenidas(opcionesSerie);
                 }
             }
 
@@ -55,9 +64,10 @@ public class Controlador extends Application {
         });
     }
 
-    public void obtenerCarroceriasPorSerie(final controladorDelegate delegate) {
+    public void obtenerCarroceriasPorSerie(final controladorDelegate delegate, String idSerie) {
         opcionesCarrocerias = new  ArrayList<String>();
-        Call<List<Carroceria>> call = this.apiInterface.getCarroceriasPorSerie("3");
+
+        Call<List<Carroceria>> call = this.apiInterface.getCarroceriasPorSerie(String.valueOf(idSerie));
         call.enqueue(new Callback<List<Carroceria>>() {
             @Override
             public void onResponse(Call<List<Carroceria>> call, Response<List<Carroceria>> response) {

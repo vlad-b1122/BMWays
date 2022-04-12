@@ -13,7 +13,9 @@ import android.widget.Toast;
 import com.example.bmways.modelos.Serie;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.DoubleStream;
 
 public class SelectorActivity extends AppCompatActivity implements Controlador.controladorDelegate {
 
@@ -21,7 +23,7 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
 
     private Spinner desplegableSerie;
     private ArrayList<String> opcionesSerie;
-    private ArrayAdapter<String> adaptadorListaSerie;
+    private ArrayAdapter<Serie> adaptadorListaSerie;
 
     private Spinner desplegableCarroceria;
     private ArrayList<String> opcionesCarroceria;
@@ -44,7 +46,7 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
         setContentView(R.layout.activity_selector);
         this.controlador = (Controlador) getApplicationContext();
         this.inicializarDesplegableSerie();
-        this.inicializarDesplegableCarroceria();
+       // this.inicializarDesplegableCarroceria();
         this.inicializarDesplegableCombustible();
         this.inicializarDesplegableMotor();
 
@@ -56,11 +58,11 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
         this.controlador.obtenerSeries(this);
     }
 
-    private void inicializarDesplegableCarroceria()
+  /*  private void inicializarDesplegableCarroceria()
     {
         desplegableCarroceria = findViewById(R.id.despCarroceria);
         this.controlador.obtenerCarroceriasPorSerie(this);
-    }
+    }*/
 
     private void inicializarDesplegableCombustible()
     {
@@ -102,10 +104,10 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
         String serieSeleccionada = (String) desplegableSerie.getSelectedItem();
         Toast.makeText(this, "serie seleccionada: "+serieSeleccionada, Toast.LENGTH_SHORT).show();
     }
-
+/*
     @Override
     public void seriesObtenidas(List<String> series) {
-        adaptadorListaSerie = new ArrayAdapter<String>(SelectorActivity.this, R.layout.spinner_list, controlador.opcionesSerie);
+        adaptadorListaSerie = new ArrayAdapter<Serie>(SelectorActivity.this, R.layout.spinner_list, controlador.series);
         adaptadorListaSerie.setDropDownViewResource(R.layout.spinner_dropdown);
 
         desplegableSerie.setAdapter(adaptadorListaSerie);
@@ -116,9 +118,32 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(SelectorActivity.this,"i vale: "+i, Toast.LENGTH_SHORT).show();
                 desplegableSerie.setSelection(i);
-               /* if (controlador.opcionesSerie.get(i)){
-                    controlador.obtenerCarroceriasPorSerie();
-                }*/
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }*/
+
+    @Override
+    public void objetosSerieObtenidos(List<Serie> series) {
+        adaptadorListaSerie = new ArrayAdapter<Serie>(SelectorActivity.this, R.layout.spinner_list, controlador.series);
+        adaptadorListaSerie.setDropDownViewResource(R.layout.spinner_dropdown);
+
+        desplegableSerie.setAdapter(adaptadorListaSerie);
+        desplegableSerie.setPrompt("Seleccione una serie");
+
+        desplegableSerie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //Toast.makeText(SelectorActivity.this,"i vale: "+i, Toast.LENGTH_SHORT).show();
+                desplegableSerie.setSelection(i);
+                Serie serieAux = controlador.series.get(i);
+                desplegableCarroceria = findViewById(R.id.despCarroceria);
+                controlador.obtenerCarroceriasPorSerie(SelectorActivity.this, serieAux.getIdSerie());
             }
 
             @Override

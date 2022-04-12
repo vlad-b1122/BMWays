@@ -1,15 +1,15 @@
 package com.example.bmways.modelos;
 
 public class Serie {
-    private int idSerie;
+    private String ID_Serie;
     private String nombreSerie;
-    public Serie(int idSerie, String nombreSerie) {
-        this.idSerie = idSerie;
+    public Serie(String idSerie, String nombreSerie) {
+        this.ID_Serie = idSerie;
         this.nombreSerie = nombreSerie;
     }
 
-    public int getIdSerie() {
-        return idSerie;
+    public String getIdSerie() {
+        return ID_Serie;
     }
 
     public String getNombreSerie() {
@@ -18,9 +18,6 @@ public class Serie {
 
     @Override
     public String toString() {
-        return "Serie{" +
-                "idSerie=" + idSerie +
-                ", nombreSerie='" + nombreSerie + '\'' +
-                '}';
+        return nombreSerie;
     }
 }
