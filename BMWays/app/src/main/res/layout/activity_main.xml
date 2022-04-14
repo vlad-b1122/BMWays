@@ -11,15 +11,24 @@
         android:id="@+id/botonEligeCoche"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="528dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="155dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="292dp"
+        android:background="#545454"
+        android:includeFontPadding="true"
         android:onClick="elegirCoche"
-        android:text="Elige tu coche"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Seleccionar vehiculo"
+        android:textColor="#00AFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="230dp"
+        android:layout_height="189dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_completo_sin_fondo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
