@@ -2,9 +2,10 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="Prueba"
+    android:background="#545454"
     android:padding="10dp"
-    android:textSize="14dp"
-    android:textColor="#B11B45">
+    android:text="Prueba"
+    android:textColor="#00AFFF"
+    android:textSize="14dp">
 
 </TextView>

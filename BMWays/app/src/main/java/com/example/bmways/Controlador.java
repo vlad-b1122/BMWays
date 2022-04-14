@@ -21,7 +21,7 @@ public class Controlador extends Application {
     public ArrayList<String> opcionesSerie;
     public ArrayList<Serie> series;
 
-    public ArrayList<String> opcionesCarrocerias;
+    public ArrayList<Carroceria> opcionesCarrocerias;
     public ArrayList<Carroceria> carrocerias;
 
     private ApiInterface apiInterface;
@@ -35,7 +35,7 @@ public class Controlador extends Application {
     interface controladorDelegate{
         //void seriesObtenidas(List<String> series);
         void objetosSerieObtenidos(List<Serie> series);
-        void carroceriasObtenidas(List<String> series);
+        void carroceriasObtenidas(List<Carroceria> carrocerias);
     }
     public void obtenerSeries(final controladorDelegate delegate){
         //opcionesSerie = new  ArrayList<String>();
@@ -47,7 +47,7 @@ public class Controlador extends Application {
                 if (response.isSuccessful()) {
                     for (Serie serie : response.body()) {
                         //opcionesSerie.add(serie.getNombreSerie());
-                        System.out.println("TEST ----------------------------------------------> Valor serie  " + serie.getIdSerie());
+                        //System.out.println("TEST ----------------------------------------------> Valor serie  " + serie.getIdSerie());
                         series.add(serie);
                     }
                     delegate.objetosSerieObtenidos(series);
@@ -65,7 +65,7 @@ public class Controlador extends Application {
     }
 
     public void obtenerCarroceriasPorSerie(final controladorDelegate delegate, String idSerie) {
-        opcionesCarrocerias = new  ArrayList<String>();
+        opcionesCarrocerias = new  ArrayList<Carroceria>();
 
         Call<List<Carroceria>> call = this.apiInterface.getCarroceriasPorSerie(String.valueOf(idSerie));
         call.enqueue(new Callback<List<Carroceria>>() {
@@ -73,7 +73,7 @@ public class Controlador extends Application {
             public void onResponse(Call<List<Carroceria>> call, Response<List<Carroceria>> response) {
                 if (response.isSuccessful()) {
                     for (Carroceria carroceria : response.body()) {
-                        opcionesCarrocerias.add(carroceria.getNombreCarroceria());
+                        opcionesCarrocerias.add(carroceria);
                     }
                     delegate.carroceriasObtenidas(opcionesCarrocerias);
                 }

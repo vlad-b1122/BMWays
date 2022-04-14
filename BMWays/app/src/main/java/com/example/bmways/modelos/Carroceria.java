@@ -38,4 +38,9 @@ public class Carroceria {
     public String getNombreCarroceria() {
         return nombreCarroceria;
     }
+
+    @Override
+    public String toString() {
+        return nombreCarroceria;
+    }
 }

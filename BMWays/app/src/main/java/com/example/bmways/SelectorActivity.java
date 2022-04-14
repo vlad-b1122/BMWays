@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.bmways.modelos.Carroceria;
 import com.example.bmways.modelos.Serie;
 
 import java.util.ArrayList;
@@ -154,14 +155,14 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
     }
 
     @Override
-    public void carroceriasObtenidas(List<String> series) {
-        adaptadorListaCarroceria = new ArrayAdapter<String>(SelectorActivity.this, R.layout.spinner_list, controlador.opcionesCarrocerias);
+    public void carroceriasObtenidas(List<Carroceria> carrocerias) {
+        adaptadorListaCarroceria = new ArrayAdapter<Carroceria>(SelectorActivity.this, R.layout.spinner_list, controlador.opcionesCarrocerias);
         desplegableCarroceria.setAdapter(adaptadorListaCarroceria);
         desplegableCarroceria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                // desplegableCarroceria.setSelection(2);
-                Toast.makeText(SelectorActivity.this,"i vale: "+i, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(SelectorActivity.this,"i vale: "+i, Toast.LENGTH_SHORT).show();
                // desplegableCarroceria.setSelection(i);
             }
 
