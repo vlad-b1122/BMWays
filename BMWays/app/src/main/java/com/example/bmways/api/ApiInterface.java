@@ -1,12 +1,12 @@
 package com.example.bmways.api;
 
 import com.example.bmways.modelos.Carroceria;
-import com.example.bmways.modelos.Serie;
+import com.example.bmways.modelos.Combustible;
+import com.example.bmways.modelos.String;
 
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -19,11 +19,14 @@ public interface ApiInterface {
     Call<List<usuario>> getUsuario(@Query("codigo") String codigo);
 */
     @POST("getSerie.php")
-    Call<List<Serie>> getSeries();
+    Call<List<String>> getSeries();
 
 
     @POST("getCarroceria.php")
-    Call<List<Carroceria>> getCarroceriasPorSerie(@Query("id_serie") String id_serie);
+    Call<List<Carroceria>> getCarroceriasPorSerie(@Query("id_serie") java.lang.String id_serie);
+
+    @POST("getCombustible.php")
+    Call<List<Combustible>> getCombustiblesPorCarroceria(@Query("id_carroceria") java.lang.String id_carroceria);
 
 
    /* @GET("get_usuario.php")

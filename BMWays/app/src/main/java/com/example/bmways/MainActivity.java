@@ -4,18 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
-import com.example.bmways.api.ApiInterface;
-import com.example.bmways.api.ServiceGenerator;
-import com.example.bmways.modelos.Serie;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private static final int SHOW_SUBACTIVITY = 1;
