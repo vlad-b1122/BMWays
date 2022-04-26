@@ -23,9 +23,6 @@ public class String {
 
     @Override
     public java.lang.String toString() {
-        return "Serie{" +
-                "ID_Serie='" + ID_Serie + '\'' +
-                ", nombreSerie='" + nombreSerie + '\'' +
-                '}';
+        return nombreSerie;
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.bmways.modelos.Carroceria;
 import com.example.bmways.modelos.Combustible;
+import com.example.bmways.modelos.Motor;
 import com.example.bmways.modelos.String;
 
 import java.util.ArrayList;
@@ -45,7 +46,6 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
         setContentView(R.layout.activity_selector);
         this.controlador = (Controlador) getApplicationContext();
         this.inicializarDesplegableSerie();
-        this.inicializarDesplegableMotor();
 
     }
 
@@ -55,29 +55,7 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
         this.controlador.obtenerSeries(this);
     }
 
-
-
-
-    private void inicializarDesplegableMotor()
-    {
-        opcionesMotor = new ArrayList<java.lang.String>();
-        this.crearOpcionesMotor();
-        adaptadorListaMotor = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, opcionesMotor);
-        desplegableMotor = (Spinner) findViewById(R.id.despMotor);
-        desplegableMotor.setAdapter(adaptadorListaMotor);
-    }
-
-    private void crearOpcionesMotor()
-    {
-        opcionesMotor.add("2.0");
-        opcionesMotor.add("2.2");
-        opcionesMotor.add("2.5");
-        opcionesMotor.add("3.0");
-        opcionesMotor.add("4.0");
-    }
-
     public void pressSeleccionar(View view) {
-        //get serie
         java.lang.String serieSeleccionada = (java.lang.String) desplegableSerie.getSelectedItem();
         Toast.makeText(this, "serie seleccionada: "+serieSeleccionada, Toast.LENGTH_SHORT).show();
     }
@@ -93,8 +71,7 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
         desplegableSerie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(SelectorActivity.this,"i vale: "+i, Toast.LENGTH_SHORT).show();
-                desplegableSerie.setSelection(i);
+               desplegableSerie.setSelection(i);
                 String serieAux = controlador.series.get(i);
                 desplegableCarroceria = findViewById(R.id.despCarroceria);
                 controlador.obtenerCarroceriasPorSerie(SelectorActivity.this, serieAux.getIdSerie());
@@ -114,7 +91,6 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
         desplegableCarroceria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(SelectorActivity.this,"i vale: "+i, Toast.LENGTH_SHORT).show();
                 desplegableCarroceria.setSelection(i);
                 Carroceria carroceriaAux = controlador.carrocerias.get(i);
                 desplegableCombustible = findViewById(R.id.despCombustible);
@@ -137,8 +113,28 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
                 //Toast.makeText(SelectorActivity.this,"i vale: "+i, Toast.LENGTH_SHORT).show();
                 desplegableCombustible.setSelection(i);
                 Combustible combustibleAux = controlador.combustibles.get(i);
-                desplegableCombustible = findViewById(R.id.despCombustible);
-                controlador.obtenerCombustiblesPorCarroceria(SelectorActivity.this, combustibleAux.getID_combustible());
+                desplegableMotor = findViewById(R.id.despMotor);
+                controlador.obtenerMotoresPorCombustible(SelectorActivity.this, combustibleAux.getID_combustible());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+    @Override
+    public void motoresObtenidos(List<Motor> motores) {
+        adaptadorListaMotor = new ArrayAdapter<Motor>(SelectorActivity.this, R.layout.spinner_list, controlador.motores);
+        desplegableMotor.setAdapter(adaptadorListaMotor);
+        desplegableMotor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //Toast.makeText(SelectorActivity.this,"i vale: "+i, Toast.LENGTH_SHORT).show();
+                desplegableMotor.setSelection(i);
+                Motor motorAux = controlador.motores.get(i);
+                desplegableMotor = findViewById(R.id.despMotor);
+                //controlador.obtenerMotoresPorCombustible(SelectorActivity.this, combustibleAux.getID_combustible());*/
             }
 
             @Override

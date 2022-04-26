@@ -46,10 +46,6 @@ public class Carroceria {
 
     @Override
     public java.lang.String toString() {
-        return "Carroceria{" +
-                "ID_Carroceria=" + ID_carroceria +
-                ", nombreCarroceria='" + nombreCarroceria + '\'' +
-                ", FK_Serie=" + FK_Serie +
-                '}';
+        return nombreCarroceria;
     }
 }

@@ -2,6 +2,7 @@ package com.example.bmways.api;
 
 import com.example.bmways.modelos.Carroceria;
 import com.example.bmways.modelos.Combustible;
+import com.example.bmways.modelos.Motor;
 import com.example.bmways.modelos.String;
 
 import java.util.List;
@@ -27,6 +28,9 @@ public interface ApiInterface {
 
     @POST("getCombustible.php")
     Call<List<Combustible>> getCombustiblesPorCarroceria(@Query("id_carroceria") java.lang.String id_carroceria);
+
+    @POST("getMotor.php")
+    Call<List<Motor>> getMotoresPorCombustible(@Query("id_combustible") java.lang.String id_combustible);
 
 
    /* @GET("get_usuario.php")

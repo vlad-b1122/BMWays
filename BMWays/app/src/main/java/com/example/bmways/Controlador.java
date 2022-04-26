@@ -7,6 +7,7 @@ import com.example.bmways.api.ApiInterface;
 import com.example.bmways.api.ServiceGenerator;
 import com.example.bmways.modelos.Carroceria;
 import com.example.bmways.modelos.Combustible;
+import com.example.bmways.modelos.Motor;
 import com.example.bmways.modelos.String;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Controlador extends Application {
     public ArrayList<String> series;
     public ArrayList<Carroceria> carrocerias;
     public ArrayList<Combustible> combustibles;
+    public ArrayList<Motor> motores;
 
     private ApiInterface apiInterface;
 
@@ -32,13 +34,12 @@ public class Controlador extends Application {
     }
 
     interface controladorDelegate{
-        //void seriesObtenidas(List<String> series);
         void seriesObtenidas(List<String> series);
         void carroceriasObtenidas(List<Carroceria> carrocerias);
         void combustiblesObtenidos(List<Combustible> combustibles);
+        void motoresObtenidos(List<Motor> motores);
     }
     public void obtenerSeries(final controladorDelegate delegate){
-        //opcionesSerie = new  ArrayList<String>();
         series = new  ArrayList<String>();
         Call<List<String>> call = this.apiInterface.getSeries();
         call.enqueue(new Callback<List<String>>() {
@@ -46,27 +47,21 @@ public class Controlador extends Application {
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
                 if (response.isSuccessful()) {
                     for (String serie : response.body()) {
-                        //opcionesSerie.add(serie.getNombreSerie());
                         //System.out.println("TEST ----------------------------------------------> Valor serie  " + serie.getIdSerie());
                         series.add(serie);
                     }
                     delegate.seriesObtenidas(series);
-                    //delegate.seriesObtenidas(opcionesSerie);
                 }
             }
-
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
-                //ha fallado mostrar aviso de que es posible de que no tenga intertet
                 Log.e("tag", t.getMessage());
-
             }
         });
     }
 
     public void obtenerCarroceriasPorSerie(final controladorDelegate delegate, java.lang.String idSerie) {
         carrocerias = new  ArrayList<Carroceria>();
-
         Call<List<Carroceria>> call = this.apiInterface.getCarroceriasPorSerie(java.lang.String.valueOf(idSerie));
         call.enqueue(new Callback<List<Carroceria>>() {
             @Override
@@ -77,14 +72,10 @@ public class Controlador extends Application {
                     }
                     delegate.carroceriasObtenidas(carrocerias);
                 }
-
             }
             @Override
             public void onFailure(Call<List<Carroceria>> call, Throwable t) {
-
-                //ha fallado mostrar aviso de que es posible de que no tenga intertet
                 Log.e("tag", t.getMessage());
-
             }
         });
     }
@@ -101,17 +92,37 @@ public class Controlador extends Application {
                     }
                     delegate.combustiblesObtenidos(combustibles);
                 }
-
             }
             @Override
             public void onFailure(Call<List<Combustible>> call, Throwable t) {
-
-                //ha fallado mostrar aviso de que es posible de que no tenga intertet
                 Log.e("tag", t.getMessage());
 
             }
         });
     }
+
+    public void obtenerMotoresPorCombustible(final controladorDelegate delegate, java.lang.String idCombustible) {
+        motores = new  ArrayList<Motor>();
+        Call<List<Motor>> call = this.apiInterface.getMotoresPorCombustible(java.lang.String.valueOf(idCombustible));
+        call.enqueue(new Callback<List<Motor>>() {
+            @Override
+            public void onResponse(Call<List<Motor>> call, Response<List<Motor>> response) {
+                if (response.isSuccessful()) {
+                    for (Motor motor : response.body()) {
+                        motores.add(motor);
+                    }
+                    delegate.motoresObtenidos(motores);
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Motor>> call, Throwable t) {
+                Log.e("tag", t.getMessage());
+
+            }
+        });
+    }
+
+
 
 }
 

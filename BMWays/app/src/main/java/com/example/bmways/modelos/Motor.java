@@ -1,37 +1,43 @@
 package com.example.bmways.modelos;
 
 public class Motor {
-    private int idMotor;
-    private String nombreMotor;
-    private Carroceria carroceria;
+    private java.lang.String ID_motor;
+    private java.lang.String nombreMotor;
+    private java.lang.String FK_Combustible;
 
-    public Motor(int idMotor, String nombreMotor, Carroceria carroceria) {
-        this.idMotor = idMotor;
+    public Motor(java.lang.String ID_motor, java.lang.String nombreMotor, java.lang.String carroceria) {
+        this.ID_motor = ID_motor;
         this.nombreMotor = nombreMotor;
-        this.carroceria = carroceria;
+        this.FK_Combustible = carroceria;
     }
 
-    public int getIdMotor() {
-        return idMotor;
+    public java.lang.String getID_motor() {
+        return ID_motor;
     }
 
-    public String getNombreMotor() {
+    public java.lang.String getNombreMotor() {
         return nombreMotor;
     }
 
-    public Carroceria getCarroceria() {
-        return carroceria;
+    public java.lang.String getFK_Combustible() {
+        return FK_Combustible;
     }
 
-    public void setIdMotor(int idMotor) {
-        this.idMotor = idMotor;
+    public void setID_motor(java.lang.String ID_motor) {
+        this.ID_motor = ID_motor;
     }
 
-    public void setNombreMotor(String nombreMotor) {
+    public void setNombreMotor(java.lang.String nombreMotor) {
         this.nombreMotor = nombreMotor;
     }
 
-    public void setCarroceria(Carroceria carroceria) {
-        this.carroceria = carroceria;
+    public void setFK_Combustible(java.lang.String FK_Combustible) {
+        this.FK_Combustible = FK_Combustible;
+    }
+
+    @Override
+    public java.lang.String toString() {
+        return nombreMotor;
+
     }
 }

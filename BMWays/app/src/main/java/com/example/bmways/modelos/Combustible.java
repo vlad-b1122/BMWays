@@ -3,9 +3,9 @@ package com.example.bmways.modelos;
 public class Combustible {
     private java.lang.String ID_combustible;
     private java.lang.String nombreCombustible;
-    private String FK_Carroceria;
+    private java.lang.String FK_Carroceria;
 
-    public Combustible(java.lang.String ID_combustible, java.lang.String nombreSerie, String FK_Carroceria) {
+    public Combustible(java.lang.String ID_combustible, java.lang.String nombreSerie, java.lang.String FK_Carroceria) {
         this.ID_combustible = ID_combustible;
         this.nombreCombustible = nombreSerie;
         this.FK_Carroceria = FK_Carroceria;
@@ -19,7 +19,7 @@ public class Combustible {
         return nombreCombustible;
     }
 
-    public String getFK_Carroceria() {
+    public java.lang.String getFK_Carroceria() {
         return FK_Carroceria;
     }
 
@@ -31,7 +31,7 @@ public class Combustible {
         this.nombreCombustible = nombreSerie;
     }
 
-    public void setFK_Carroceria(String FK_Carroceria) {
+    public void setFK_Carroceria(java.lang.String FK_Carroceria) {
         this.FK_Carroceria = FK_Carroceria;
     }
 
