@@ -9,15 +9,18 @@
 
     <Button
         android:id="@+id/botonEligeCoche"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="203dp"
+        android:layout_height="49dp"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="125dp"
         android:background="#545454"
         android:includeFontPadding="true"
         android:onClick="elegirCoche"
-        android:text="Seleccionar vehiculo"
+        android:text="Selecciona tu coche"
         android:textColor="#00AFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
