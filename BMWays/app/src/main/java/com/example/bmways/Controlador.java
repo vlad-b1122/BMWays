@@ -9,6 +9,7 @@ import com.example.bmways.modelos.Carroceria;
 import com.example.bmways.modelos.Combustible;
 import com.example.bmways.modelos.Motor;
 import com.example.bmways.modelos.String;
+import com.example.bmways.modelos.Tutorial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class Controlador extends Application {
     public ArrayList<Carroceria> carrocerias;
     public ArrayList<Combustible> combustibles;
     public ArrayList<Motor> motores;
+    public ArrayList<Tutorial> tutoriales;
+    public java.lang.String idMotor;
 
     private ApiInterface apiInterface;
 
@@ -39,6 +42,7 @@ public class Controlador extends Application {
         void combustiblesObtenidos(List<Combustible> combustibles);
         void motoresObtenidos(List<Motor> motores);
     }
+
     public void obtenerSeries(final controladorDelegate delegate){
         series = new  ArrayList<String>();
         Call<List<String>> call = this.apiInterface.getSeries();
@@ -122,8 +126,38 @@ public class Controlador extends Application {
         });
     }
 
+    public void obtenerTutorialesPorMotor() {
+        tutoriales = new  ArrayList<Tutorial>();
+        Call<List<Tutorial>> call = this.apiInterface.getTutorialesPorMotor(java.lang.String.valueOf(this.idMotor));
+        call.enqueue(new Callback<List<Tutorial>>() {
+            @Override
+            public void onResponse(Call<List<Tutorial>> call, Response<List<Tutorial>> response) {
+                if (response.isSuccessful()) {
+                    for (Tutorial tutorial : response.body()) {
+                        tutoriales.add(tutorial);
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Tutorial>> call, Throwable t) {
+                Log.e("tag", t.getMessage());
 
+            }
+        });
+    }
 
+    public void setIdMotor(java.lang.String idMotor)
+    {
+        this.idMotor = idMotor;
+    }
+
+    public java.lang.String getIdMotor() {
+        return idMotor;
+    }
+
+    public ArrayList<Tutorial> getTutoriales() {
+        return tutoriales;
+    }
 }
 
 

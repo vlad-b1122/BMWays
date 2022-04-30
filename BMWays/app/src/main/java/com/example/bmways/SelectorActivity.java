@@ -2,6 +2,7 @@ package com.example.bmways;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import com.example.bmways.modelos.Carroceria;
 import com.example.bmways.modelos.Combustible;
 import com.example.bmways.modelos.Motor;
 import com.example.bmways.modelos.String;
+import com.example.bmways.modelos.Tutorial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +58,10 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
     }
 
     public void pressSeleccionar(View view) {
-        java.lang.String serieSeleccionada = (java.lang.String) desplegableSerie.getSelectedItem();
-        Toast.makeText(this, "serie seleccionada: "+serieSeleccionada, Toast.LENGTH_SHORT).show();
+        //java.lang.String serieSeleccionada = (java.lang.String) desplegableSerie.getSelectedItem();
+        //Toast.makeText(this, "serie seleccionada: "+serieSeleccionada, Toast.LENGTH_SHORT).show();
+        //this.controlador.obtenerTutorialesPorMotor();
+        startActivity(new Intent(SelectorActivity.this, VideosActivity.class));
     }
 
     @Override
@@ -134,7 +138,7 @@ public class SelectorActivity extends AppCompatActivity implements Controlador.c
                 desplegableMotor.setSelection(i);
                 Motor motorAux = controlador.motores.get(i);
                 desplegableMotor = findViewById(R.id.despMotor);
-                //controlador.obtenerMotoresPorCombustible(SelectorActivity.this, combustibleAux.getID_combustible());*/
+                controlador.setIdMotor(motorAux.getID_motor());
             }
 
             @Override
