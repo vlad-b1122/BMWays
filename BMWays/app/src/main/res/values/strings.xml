@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">BMWays</string>
-    
+
     <string-array name="videos">
         <item>Video1</item>
         <item>Video2</item>
     </string-array>
-    
+
     <string-array name="descriptions">
         <item>Descripcion 1</item>
         <item>Descripcion 2</item>

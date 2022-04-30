@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.bmways.modelos.Motor;
@@ -13,7 +15,7 @@ import com.example.bmways.modelos.Tutorial;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VideosActivity extends AppCompatActivity implements Controlador.controladorDelegateTutoriales{
+public class VideosActivity extends AppCompatActivity implements Controlador.controladorDelegateTutoriales {
 
     RecyclerView recyclerView;
 
@@ -48,7 +50,22 @@ public class VideosActivity extends AppCompatActivity implements Controlador.con
         images = new int[]{R.drawable.video1thumbnail,R.drawable.video1thumbnail};
 
         ListaVideosAdapter adapterLista = new ListaVideosAdapter(this, s1, s2, images);
+
+        adapterLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String titulo = s1.get(recyclerView.getChildAdapterPosition(v));
+                String desc = s2.get(recyclerView.getChildAdapterPosition(v));
+
+                Intent intent = new Intent(getApplicationContext(), InTutorialActivity.class);
+                intent.putExtra("titulo", titulo);
+                intent.putExtra("descripcion", desc);
+                startActivity(intent);
+            }
+        });
+
         recyclerView.setAdapter(adapterLista);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
 }
