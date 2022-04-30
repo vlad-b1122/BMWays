@@ -32,7 +32,7 @@ public class InTutorialActivity extends AppCompatActivity {
         this.titulo = bundle.getString("titulo");
         this.descripcion = bundle.getString("descripcion");
         inTutorialTitle.setText(titulo);
-        inTutorialDescription.setText("https://www.youtube.com/watch?v=" + descripcion);
+        inTutorialDescription.setText("Link: https://www.youtube.com/watch?v=" + descripcion);
 
         youtube_player_view = findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youtube_player_view);

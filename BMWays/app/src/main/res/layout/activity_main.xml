@@ -14,24 +14,38 @@
         android:layout_marginStart="124dp"
         android:layout_marginTop="220dp"
         android:layout_marginEnd="125dp"
-        android:background="#545454"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="#545454"
+        android:fontFamily="@font/fugaz_one"
         android:includeFontPadding="true"
         android:onClick="elegirCoche"
         android:text="Selecciona tu coche"
         android:textColor="#00AFFF"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="230dp"
         android:layout_height="189dp"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="124dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_completo_sin_fondo" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="171dp"
+        android:layout_height="73dp"
+        android:layout_marginBottom="160dp"
+        app:layout_constraintBottom_toTopOf="@+id/botonEligeCoche"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logo_texto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
