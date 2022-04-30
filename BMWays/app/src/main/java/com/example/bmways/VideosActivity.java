@@ -13,7 +13,7 @@ import com.example.bmways.modelos.Tutorial;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VideosActivity extends AppCompatActivity {
+public class VideosActivity extends AppCompatActivity implements Controlador.controladorDelegateTutoriales{
 
     RecyclerView recyclerView;
 
@@ -34,14 +34,18 @@ public class VideosActivity extends AppCompatActivity {
         tutoriales = new ArrayList<Tutorial>();
 
         recyclerView = findViewById(R.id.recyclerView);
-        this.controlador.obtenerTutorialesPorMotor();
+        this.controlador.obtenerTutorialesPorMotor(VideosActivity.this);
+    }
+
+    @Override
+    public void tutorialesObtenidos(List<Tutorial> tutoriales) {
         this.tutoriales = controlador.getTutoriales();
 
         for (Tutorial tuto : tutoriales) {
-            s1.add(tuto.getNombreTutorial());
-            s2.add(tuto.getDescripcion());
+            s1.add(tuto.getDescripcion());
+            s2.add(tuto.getVideo());
         }
-        images = new int[]{R.drawable.video1thumbnail};
+        images = new int[]{R.drawable.video1thumbnail,R.drawable.video1thumbnail};
 
         ListaVideosAdapter adapterLista = new ListaVideosAdapter(this, s1, s2, images);
         recyclerView.setAdapter(adapterLista);

@@ -43,6 +43,10 @@ public class Controlador extends Application {
         void motoresObtenidos(List<Motor> motores);
     }
 
+    interface controladorDelegateTutoriales{
+        void tutorialesObtenidos(List<Tutorial> tutoriales);
+    }
+
     public void obtenerSeries(final controladorDelegate delegate){
         series = new  ArrayList<String>();
         Call<List<String>> call = this.apiInterface.getSeries();
@@ -126,7 +130,7 @@ public class Controlador extends Application {
         });
     }
 
-    public void obtenerTutorialesPorMotor() {
+    public void obtenerTutorialesPorMotor(final controladorDelegateTutoriales delegate2) {
         tutoriales = new  ArrayList<Tutorial>();
         Call<List<Tutorial>> call = this.apiInterface.getTutorialesPorMotor(java.lang.String.valueOf(this.idMotor));
         call.enqueue(new Callback<List<Tutorial>>() {
@@ -136,8 +140,10 @@ public class Controlador extends Application {
                     for (Tutorial tutorial : response.body()) {
                         tutoriales.add(tutorial);
                     }
+                    delegate2.tutorialesObtenidos(tutoriales);
                 }
             }
+
             @Override
             public void onFailure(Call<List<Tutorial>> call, Throwable t) {
                 Log.e("tag", t.getMessage());
