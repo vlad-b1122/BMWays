@@ -11,16 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class ListaVideosAdapter extends RecyclerView.Adapter<ListaVideosAdapter.MyViewHolder> implements View.OnClickListener {
 
     ArrayList<String> data1, data2;
-    int images[];
+    ArrayList<Integer> images;
     Context context;
     View.OnClickListener listener;
 
-    public ListaVideosAdapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, int img[]){
+    public ListaVideosAdapter(Context ct, ArrayList<String> s1, ArrayList<String> s2, ArrayList<Integer> img){
         this.context = ct;
         this.data1 = s1;
         this.data2 = s2;
@@ -42,7 +44,10 @@ public class ListaVideosAdapter extends RecyclerView.Adapter<ListaVideosAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tituloVideo.setText(data1.get(position));
         holder.descripcionVideo.setText(data2.get(position));
-        holder.thumbnailVideo.setImageResource(images[position]);
+        //holder.thumbnailVideo.setImageResource(images[position]);
+        //Implementacion con Picasso
+        String url = "https://bmways.studio/androimg/"+images.get(position)+".jpg";
+        Picasso.get().load(url).into(holder.thumbnailVideo);
     }
 
     @Override

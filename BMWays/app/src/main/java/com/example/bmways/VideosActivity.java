@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.example.bmways.modelos.Motor;
 import com.example.bmways.modelos.Tutorial;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,7 @@ public class VideosActivity extends AppCompatActivity implements Controlador.con
     //Aqui se fija el contenido de la lista
     ArrayList<Tutorial> tutoriales;
     ArrayList<String> s1, s2;
-    int images[];
+    ArrayList<Integer> images;
     Controlador controlador;
 
     @Override
@@ -42,12 +44,13 @@ public class VideosActivity extends AppCompatActivity implements Controlador.con
     @Override
     public void tutorialesObtenidos(List<Tutorial> tutoriales) {
         this.tutoriales = controlador.getTutoriales();
+        images = new ArrayList<>();
 
         for (Tutorial tuto : tutoriales) {
             s1.add(tuto.getDescripcion());
             s2.add(tuto.getVideo());
+            images.add(Integer.parseInt(tuto.getImagen()));
         }
-        images = new int[]{R.drawable.video1thumbnail,R.drawable.video1thumbnail};
 
         ListaVideosAdapter adapterLista = new ListaVideosAdapter(this, s1, s2, images);
 
